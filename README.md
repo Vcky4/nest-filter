@@ -1,4 +1,4 @@
-<p align="center">
+  <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
@@ -32,7 +32,32 @@
 $ npm install
 ```
 
+## Getting Started
+To get started, firstly, you need setup the Postgres database with docker by running the following commands
+
+```bash
+# run this to setup db with docker automatically
+$ npm run start:dev:db
+
+# use this if encounter an error about permission
+$ sudo ./src/scripts/start-db.sh
+```
+
 ## Running the app
+For the sake of production and development environment, I have created a config to set up typeORM from the .env. The idea of this config class is to run before our API Server main.ts starts. It can read the configuration from environment variables being able to provide the values then at runtime in a read-only manner.
+
+Below is the .env file at the root of the project
+```bash
+POSTGRES_HOST=127.0.0.1
+POSTGRES_PORT=5432
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=mysecretpassword
+POSTGRES_DATABASE=my_database
+PORT=3000
+MODE=DEV
+RUN_MIGRATIONS=true
+```
+Note: This singleton pattern for the configService does not make it easily testable. In the official NestJS docs (here) you can find a way how to make this configService better testable with NestJS. However, the approach there heavily relies on the dependency injection strategy NestJS is built on, which ties it strongly to the framework lifecycle— meaning running it without NestJS from CLI is kinda icky, but this for me is essential to reuse it outside the NestJS app lifecycle you — will see later why - that’s why I choose this approach.
 
 ```bash
 # development
