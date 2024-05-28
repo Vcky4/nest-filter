@@ -12,4 +12,14 @@ export class RoomService {
         return await this.repo.find()
             .then(rooms => rooms.map(e => RoomDTO.fromEntity(e)));
     }
+
+    public async create(dto: RoomDTO) {
+        return this.repo.save(dto.toEntity())
+            .then(e => RoomDTO.fromEntity(e));
+    }
+
+    //delete all
+    public async deleteAll(){
+        return this.repo.clear()
+    }
 }

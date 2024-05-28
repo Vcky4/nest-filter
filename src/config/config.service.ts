@@ -47,8 +47,6 @@ class ConfigService {
       migrations: ['src/migration/*.ts'],
 
       //specify the migration directory
-       
-
       // cli: {
       //   migrationsDir: 'src/migration',
       // },

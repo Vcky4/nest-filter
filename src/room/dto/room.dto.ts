@@ -36,14 +36,12 @@ export class RoomDTO implements Readonly<RoomDTO> {
         });
     }
 
-    // public toEntity(user: User = null) {
-    //     const it = new Item();
-    //     it.id = this.id;
-    //     it.name = this.name;
-    //     it.description = this.description;
-    //     it.createDateTime = new Date();
-    //     it.createdBy = user ? user.id : null;
-    //     it.lastChangedBy = user ? user.id : null;
-    //     return it;
-    // }
+    public toEntity() {
+        const it = new Room();
+        it.id = this.id;
+        it.name = this.name;
+        it.capacity = this.capacity;
+        it.userId = this.userId;
+        return it;
+    }
 }
