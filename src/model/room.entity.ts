@@ -11,6 +11,6 @@ export class Room {
     @Column({ type: 'int', default: 0 })
     capacity: number;
 
-    @Column({ type: 'int', default: 0 })
+    @Column({ type: 'int', name: 'userId', default: 0 })
     userId: number;
 }
