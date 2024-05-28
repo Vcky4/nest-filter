@@ -102,7 +102,7 @@ echo "Stopping & removing old docker [$SERVER] and starting new fresh instance o
   (docker rm $SERVER || :) && \
   docker run --name $SERVER -e POSTGRES_PASSWORD=$PW \
   -e PGPASSWORD=$PW \
-  -p 5434:5434 \
+  -p 5432:5432 \
   -d postgres
 
 # wait for pg to start
