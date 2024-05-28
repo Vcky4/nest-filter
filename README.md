@@ -59,6 +59,24 @@ RUN_MIGRATIONS=true
 ```
 Note: This singleton pattern for the configService does not make it easily testable. In the official NestJS docs (here) you can find a way how to make this configService better testable with NestJS. However, the approach there heavily relies on the dependency injection strategy NestJS is built on, which ties it strongly to the framework lifecycle— meaning running it without NestJS from CLI is kinda icky, but this for me is essential to reuse it outside the NestJS app lifecycle you — will see later why - that’s why I choose this approach.
 
+## Database Migration
+To handle database migration for database state management in terms of production
+
+```bash
+# run this command to create a init migration:
+$ npm run typeorm:migration:generate
+
+# Run a migration
+$ npm run typeorm:migration:run
+
+# Check entities
+$ npm run check:entities
+
+# add seed data to db
+$ 
+
+```
+
 ```bash
 # development
 $ npm run start
@@ -69,6 +87,22 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+## API Documentation
+The Api documentation is done with swagger UI and can be accessed if in development [Here](https://localhost:3000/docs). 
+
+## How to use the utility functions
+* applyPagination: Apply pagination to the query.
+* applyFilters: Apply filtering to the query based on the provided filter criteria.
+* applySorting: Apply sorting to the query based on the provided sort criteria.
+
+## Example Requests
+GET /api/rooms?page=0&limit=10&filters=[]&sort=[{"field":"name","order":"ASC"}]
+
+GET /api/rooms?page=0&limit=5&filters=[{"field":"capacity","value":10,"operator":"gte"}]&sort=[{"field":"name","order":"ASC"}]
+
+GET /api/rooms?page=1&limit=2&filters=[{"field":"userId","value":1,"operator":"equals"}]&sort=[{"field":"capacity","order":"DESC"}]
+
+GET /api/rooms?page=0&limit=5&filters=[{"field":"name","value":"Room","operator":"like"}]&sort=[{"field":"userId","order":"ASC"}]
 
 ## Test
 
